@@ -1,0 +1,177 @@
+body{margin:0;padding:0;border:none; background-color: #20212b;  height: 100%; width: 100%;
+    font-family:"Courier New", Courier, monospace; text-align:center; overflow: auto; 
+}
+
+/* the container of all page */
+#container{width: 100%; float: left; max-width: 100%; clear: both; height: 100%; overflow: auto}
+
+
+/* header that contain logo and title */
+#header{width: 100%;height: 150px;float: left;background-color: #f7b904; 
+    border-bottom:10px solid #9e6752;   position: sticky; top: 0;
+    background-image: url("https://media.istockphoto.com/id/497802746/photo/gold-paper-texture-background.jpg?s=2048x2048&w=is&k=20&c=VWkYJBuOVvKkf-Kfe1O0-HEhuSFmezyw7pnD2HEgGX4=");
+    background-repeat: no-repeat; background-size: cover; display: flex; overflow:hidden;  white-space: nowrap;}
+
+#logo{float: left; width: 150px; height: 90%; color: aliceblue; padding-top: 50px;
+    background-image: url("https://img1.picmix.com/output/stamp/normal/9/8/5/5/1685589_c27dd.gif");
+    background-repeat: no-repeat; background-size: cover;} 
+
+#title{float: left; width: 500px; height: 150px; font-size: 28px;
+    padding-top: 50px; text-align: left; color:#190019;  display: flex;  min-height: 500px; 
+}
+/* end of the header content */
+
+
+/* navagtion bar start */
+#navBar{float: right; clear: both; height: 80px; width: 800px; overflow: hidden;} 
+
+#navBar table{text-align:center; width:100% ;font-size:20px; text-align:center; font-weight:bold; float: right; min-width: 500px;}
+#navBar td {padding:1.45%; width:33.333%}
+#navBar td:hover {background-color:#fbe4d8; text-decoration:underline; color:#522b5b}
+
+#navBar a {color:#dfb6b2; text-decoration:none;}
+#navBar a:visited {color:#dfb6b2}
+/* navagtion bar end */
+
+
+
+/* cintenet of pages */
+#content{width: 100%; float: left; clear: both; display:flex; flex-wrap: wrap; justify-content: flex-start;
+    justify-content: center; margin-bottom: 2; height: auto; color: #dfb6b2
+}
+#content p{padding: 5%; font-size: 24px; margin-bottom: 2%; color: #534145;}
+#aboutus{color: #534145; padding-top: 5%;}
+
+
+/* start index Page content */
+#box{width: 250px; height: 250px; margin: 1%; font-size: 24px; border: 1px solid #dfb6b2;border-radius: 10px}
+#box:hover{transform: scale(1.2); border: 1px solid #dfb6b2;border-radius: 10px}
+
+#name{background-color: #534145; float: left; color:white; 
+    font-weight: bold; ;height: 100%; display: flex; 
+    justify-content: center; align-items: center; width: 250px; font-size: 25px; opacity: 0;
+    border: 1px solid #522b5b; border-radius: 10px} 
+#name:hover{opacity: 0.8;filter: blur(0.5px)}
+/* end of the  index page content */
+
+
+
+/* start of Error Pages content */
+#ErrorMsG{color:#534145; font-size: 28px; padding-top: 20%; text-align: center;
+    justify-content: center;  
+}
+/* end of Error Pages content */
+
+
+
+/* start of Artist Page content */
+#artistTitle{float: left; clear: both; width: 100%; text-align: center; font-family: Candara; font-size: 22px}
+
+#articeImageCont{float: left; width: 350px; padding-right: 2%; margin: 1%;}
+
+#artistImage{width: 300px; height: 300px; border: 1px solid #dfb6b2;border-radius: 10px}
+
+#info{float: left; text-align: left; font-size: 18px; line-height: 1.5; width: 400px; margin: 1%;  padding: 1%;}
+/* //border: 10px solid #9e6752; border-radius: 30px */
+#info2{float: left; text-align: left; font-size: 18px; line-height: 1.5; width: 400px;  height: 300px; overflow: auto; margin: 1%; padding: 1%; }
+
+#label{color:#9e6752}
+
+#members{list-style-type: circle}
+
+#dates{list-style-type: none}
+
+#returnBack{float: left;clear: both; width: 50%; text-align: center; align-items: center; margin-top: 2%; font-size: 18px}
+#returnBack a {color:#dfb6b2 ;text-decoration:none; font-weight: bold}
+#returnBack a:hover {color:#dfb6b2 ;text-decoration:underline; font-weight: bold}
+/* end of Artist Page content */
+
+
+
+/* footer */
+#footer{height: 7%;width: 100%;float: left;  clear: both; color:#534145; padding-top: 2%}
+
+
+
+/* side bar contenet */
+.filtericon{background-image: url("https://cdn-icons-png.flaticon.com/512/6590/6590958.png");
+    background-repeat: no-repeat;
+    background-size: cover; background-color: #9e6752; 
+    width: 55px; height: 55px; border-radius: 7px; border: none;
+}
+
+
+.filterclose{
+    font-size: 25px; color: white; color:aliceblue;
+    background-size: cover; background-color: transparent;
+    width: 40px; height: 40px; border: none;border-radius: 50px;
+}
+
+#sidebarButtonDiv{float: right; padding-top: 30px; clear: right; height: 100%; width: 100%; min-width: 500px; overflow: hidden;}
+
+#sidebarButton{float: right; clear: right; margin: 3%; padding: 10px; 
+    color: white; text-align: center;
+    text-decoration: none; cursor: pointer;}
+
+#sidebar{display: none; width: 500px;
+    background-color:#534145; position: fixed; top: 0; right: -500px;
+    max-width: 400px; min-width: 400px; height: 100%; transition: left 0.3s ease; 
+    border-left:5px solid #9e6752; opacity: 0.90; color: white;
+}
+
+.disabled { pointer-events: none;}
+
+/* serach bar div start */
+#searchBar{float: left; align-items: center; width: 100%; height: 100px;}
+
+#searchicon{background-image: 
+    url("https://png.pngtree.com/png-vector/20190115/ourmid/pngtree-vector-search-icon-png-image_318071.jpg");
+      background-repeat: no-repeat; 
+      background-size: cover; background-color: white;
+      width: 35px; height: 35px; border-radius: 20px; border: 2px solid #dfb6b2; 
+}
+#searchicon:hover{cursor: pointer;}
+
+#searchValue{width: 150px; height: 35px; padding: 1%; margin-top: 50px;
+    box-sizing: border-box;
+    border: 2px solid #ccc; border-radius: 4px;
+    font-size: 16px; background-color: white;
+    background-image: url; background-position: 10px 10px; 
+    background-repeat: no-repeat; padding: 12px 20px 12px 40px;
+    transition: width 0.4s ease-in-out;}
+
+#searchValue:focus {width: 300px}
+#suggestionsList{background-color: #dfb6b2; border: 10px solid #dfb6b2;}
+/* end of search bar div */
+
+
+
+/* filter div start */
+#filter{float: left; clear: both; width: 100%; margin-top: 40px; display: flex; font-weight: bold;
+    justify-content: center; align-items: center; color: white;}
+
+#filter table{width: 100%; border-collapse: collapse; text-align: center; color: white; font-size: 12px;}
+#filter tr{height: 100px; padding: 1%;} 
+#filter td{padding: 7%;}
+#checkbox{font-size: 10px; white-space: nowrap;}
+
+#filter tr:hover{background-color:#20212b} 
+.filterInput{width: 70px; height: 30px; outline: none; 
+    background-color: transparent;   color: wheat; box-shadow: none; border-radius: 5px;
+}
+
+#submitButton:hover{background-color: #20212b; border: none; border-radius: 6px; text-decoration: underline; cursor: pointer;}
+#submitButton{color: wheat; background-color: transparent; border: none;}
+
+#locFlter{ width: 180px; border-radius: 4px; padding-left: 0; }
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+/* end of filter div */
+
+/* end of sidebar div */
+
+#map{ height: 400px; width: 400px; margin-left:4%; margin-top: 2%; margin-bottom: 2%;}
+.location{cursor: pointer;}
+.location:hover{text-decoration: underline;}

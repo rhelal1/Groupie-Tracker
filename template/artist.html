@@ -1,0 +1,120 @@
+<html>
+<head>
+    <title>groupie-tracker</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>  
+    <script>
+        // Initialize and add the map
+        let map;
+
+        async function initMap(Location) {
+            // Convert the location string to latitude and longitude coordinates
+            const geocoder = new google.maps.Geocoder();
+
+            // Request the geolocation coordinates for the given location
+            geocoder.geocode({ address: Location }, (results, status) => {
+                if (status === 'OK') {
+                    // Get the latitude and longitude coordinates of the first result
+                    const position = {
+                        lat: results[0].geometry.location.lat(),
+                        lng: results[0].geometry.location.lng(),
+                    };
+
+                    // Request the required libraries
+                    //@ts-ignore
+                    const { Map } = google.maps;
+
+                    // Create the map centered at the specified location
+                    map = new Map(document.getElementById("map"), {
+                        zoom: 4,
+                        center: position,
+                    });
+
+                    // Add a marker to the map at the specified location
+                    new google.maps.Marker({
+                        position: position,
+                        map: map,
+                        title: Location,
+                    });
+                } else {
+                    console.error('Geocode was not successful for the following reason:', status);
+                }
+            });
+        }
+    </script>
+
+</head>
+<body>
+    <div id="container">
+        <div id="header">
+            <div id="logo">
+            </div>
+            <div id ="title">
+                <h1>Groupie Tracker</h1>
+            </div>
+        </div>
+
+        <div id="navBar">
+            <table>
+                <tr>
+                <td><a href="home.html">Home</a></td>
+                <td><a href="index.html">Artists</a></td>
+                <td><a href="aboutus.html">About Us</a></td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="content">
+            <div id="artistTitle">
+                <spain id="label"><h1>{{ .All.Name}} ♪♬</h1> </spain> <br>
+            </div>
+                <div id="articeImageCont">
+                    <div id="artistImage" style="background-image: url('{{ .All.Image}}'); background-repeat: no-repeat; background-size: cover; ">
+                    </div>
+                </div>
+
+                <div id="info">
+                    <ul>
+                        <li><spain id="label"> First Album:</spain> {{ .All.FirstAlbum}}</li>
+                        <li><spain id="label"> Members:</spain> 
+                            <ul>
+                                {{ range .All.Members}}
+                                <li id="members">{{.}}</li>
+                                {{end}}
+                            </ul>
+                        </li>
+                        <li><spain id="label"> Creation Date:</spain> {{ .All.CreationDate}}</li>
+                    </ul>
+
+                </div> 
+               
+                <div id="info2"> 
+                    <li><spain id="label"> Dates and locations: </spain></li>
+                        <ul>
+                            {{ range .MergeDatesAndLocations.Index3 }}
+                            <li id="members" class="location" onclick="initMap({{.Location}})"><spain id="label">{{.Location}}:</spain></li>
+                            <li id="dates">
+                                <ul>
+                                    <li id="dates">{{ .TheData}}</li>
+                                </ul>
+                                </li>
+                            {{end}}
+                        </ul>
+                        </ul>
+                </div>
+
+                <div id="map"> </div> <!-- Div to display the map -->
+                <br>
+                <div id="returnBack">
+                    <a href="index.html"> ← Back To Artists</a>
+                </div>     
+        
+            <div id="footer">Created By:&nbsp;Ruqaya Helal,  &nbsp;&nbsp;Maryam Abbas</div>
+        </div>
+    </div>
+</body>
+<html>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjlZ9PvubUriCfz9PkzMV8PgSQagVtNl0&libraries=places&callback=initMap"
+async defer></script>

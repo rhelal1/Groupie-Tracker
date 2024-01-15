@@ -1,0 +1,158 @@
+<html>
+<head>
+    <title>groupie-tracker</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>  
+</head>
+<body>
+    <div id="container">
+        <div id="header">
+            <div id="logo">
+            </div>
+            <div id ="title">
+                <h1>Groupie Tracker</h1>
+            </div>
+
+            <div id="sidebarButtonDiv">
+                <button id="sidebarButton" class="filtericon" onclick="toggleSidebar()"></button>
+            </div>
+
+        </div>
+
+        <div id="navBar">
+            <table>
+                <tr>
+                <td><a href="home.html">Home</a></td>
+                <td><a href="index.html">Artists</a></td>
+                <td><a href="aboutus.html">About Us</a></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="sidebar" id="sidebar">
+            <button id="sidebarButton" onclick="toggleSidebar()" class="filterclose">➤</button>
+
+            <div id="searchBar">
+                <form  method="POST" action="/search">
+                     <input type="text" id="searchValue" name="searchValue" oninput="getSuggestions()" list="suggestionsList" placeholder="Search..." maxlength="50" required>
+                     <datalist id="suggestionsList"></datalist>
+                     <input type="submit" value="" id="searchicon">
+                </form>
+            </div>
+            <br>
+    
+            <div id="filter">
+                <form method="POST" action="/filter">
+                    <table>
+                        <tr>
+                            <td><label for="creationDate">Creation Date:</label></td>
+                            <td>
+                                <ul>
+                                    <input type="number" id="creationDateMin" name="creationDateMin" min="1950" max="2018" placeholder="1990" class="filterInput">
+                                    <input type="number" id="creationDateMax" name="creationDateMax" min="1950" max="2018" placeholder="1995" class="filterInput">
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="firstAlbum">First Album:</label></td>
+                            <td> 
+                            <ul>
+                                <input type="number" id="firstAlbumMin" name="firstAlbumMin" min="1950" max="2015" placeholder="2000" class="filterInput">
+                                <input type="number" id="firstAlbumMax" name="firstAlbumMax" min="1950" max="2018" placeholder="2005" class="filterInput">
+                            </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="membersNum">Number Of Members:</label></td>
+                            <td>{{range .NumberOfMember }}
+                            <input type="checkbox" name="checkbox[]" id="checkbox" value="{{.}}">{{.}}
+                            {{end}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> <label for="locationsFlt">Locations:</label></td>
+                            <td>     
+                                <ul>
+                                    <select name="locFlter" id ="locFlter">
+                                        {{range .LocFLT }}
+                                        <option value="{{.}}" id="test">{{.}}</option>
+                                        {{end}}
+                                    </select>
+                                </ul>               
+
+                            </td>
+                        </tr>
+
+                    </table>
+                    <br>
+                    <br>
+    
+                    <input id="submitButton" type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+        
+          
+        <script>
+            function toggleSidebar() {
+              var sidebar = document.getElementById("sidebar");
+              var overlay = document.getElementById("content");
+              if (sidebar.style.display === "block") {
+                    sidebar.style.display = "none";
+                    sidebar.style.right = "-500px";
+                    content.classList.remove("disabled");
+                } else {
+                    sidebar.style.display = "block";
+                    sidebar.style.right = "0";
+                    content.classList.add("disabled");
+                }
+            }
+        </script>
+
+        <div id="content" class="active"> 
+            {{ range .All}}
+                <div id ="box" style="background-image: url('{{ .Image}}'); background-repeat: no-repeat; background-size: cover; ">
+                    <a href="/submit?value={{ .ID }}">
+                    <div id="name">
+                        {{ .Name}}
+                    </div>
+                    </a>
+                </div>
+            {{end}}
+        </div> 
+
+        <div id="footer">Created By:&nbsp;Ruqaya Helal,  &nbsp;&nbsp;Maryam Abbas</div>
+    </div>
+</body>
+
+<script>
+    function getSuggestions() {
+        const searchInput = document.getElementById("searchValue");
+        const suggestionsList = document.getElementById("suggestionsList");
+        const query = searchInput.value;
+    
+        // Make an AJAX request to the server to get suggestions
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", `/suggestions?query=${encodeURIComponent(query)}`);
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                const suggestions = JSON.parse(xhr.responseText);
+    
+                // Clear previous suggestions
+                suggestionsList.innerHTML = "";
+    
+                // Add new suggestions to the datalist
+                suggestions.forEach(function(suggestion) {
+                    const option = document.createElement("option");
+                    option.value = suggestion;
+                    suggestionsList.appendChild(option);
+                });
+            }
+        };
+        xhr.send();
+    }
+</script>
+
+<html>
+
+
+
